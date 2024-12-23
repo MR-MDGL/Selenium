@@ -1,0 +1,33 @@
+conditional commands return's either true or false
+
+is displayed                if displayed returnes true          generally used for website logo
+is enabled                  if we can perform action or not        don't use it with logo of website(click,cheackbox,is)
+is selected                 for radio buttons and cheack boxes  if button clicked manually while running and we cheack here it will give false
+                               only return true when automated by script
+driver.quit()               close all windows opened
+
+
+
+
+navigational commands
+driver.refresh()
+driver.forword()
+driver.back()
+
+
+
+find element            returnes single variable
+                           if it used and it found no element --- returnes exception 'no such element'
+findelements            returnes multiple elements in form of  a list
+                        if it used and it found no element --- returnes nothing
+                        if print(len)----0
+
+text vs get attribute
+text----------if elemt located .text use if it has no inner text it returnes nothing
+get attribute-------------if elemt located .text use if it has no inner text then we can get its all attribute
+
+
+eg in a serchbox we use .text we found nothing
+then we entered value like t-shirts and press enter
+if he acces the value then we will get out querry 't-shirts'
+
