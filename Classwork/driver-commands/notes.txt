@@ -31,3 +31,55 @@ eg in a serchbox we use .text we found nothing
 then we entered value like t-shirts and press enter
 if he acces the value then we will get out querry 't-shirts'
 
+
+
+
+
+
+
+--------------------------------------------------------------------wait commands
+Selenium Waiting Strategies
+Challenges: Tests fail due to race conditions; elements may not be ready when commands run.
+Dynamic Elements: Single-page apps and JavaScript can delay visibility or creation of elements.
+Avoid sleep: Fixed pauses are unreliable and can extend session duration unnecessarily.
+-----------------------------------------------------------Selenium Waits:
+
+Implicit Waits: Global, waits for elements up to a set time.-----------------------
+            from selenium import webdriver
+            driver = webdriver.Chrome()
+            driver.implicitly_wait(10)  # Waits up to 10 seconds for elements to appear
+
+
+Explicit Waits: Checks specific conditions until met or timeout occurs.----------------
+            from selenium.webdriver.common.by import By
+            from selenium.webdriver.support.ui import WebDriverWait
+            from selenium.webdriver.support import expected_conditions as EC
+            driver = webdriver.Chrome()
+            wait = WebDriverWait(driver, timeout=10)
+            element = wait.until(EC.visibility_of_element_located((By.ID, "element_id")))
+
+# Example: Using a custom condition with lambda
+element = wait.until(lambda d: d.find_element(By.ID, "element_id").is_displayed())
+
+Best Practices:
+Prefer explicit waits for precise control.
+Do not mix implicit and explicit waits.
+
+
+
+
+
+
+
+
+
+
+------------locating dropdown
+trigger the dropdown and select an option
+select tag (in maximum cases)
+    select class
+            select by value
+            select by indes
+            select by visible text
+input (in other cases)
+
