@@ -1,0 +1,6 @@
+use driver.switch-to()
+alert()
+accept()
+text()
+
+dismiss()
