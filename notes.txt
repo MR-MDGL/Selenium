@@ -10,5 +10,414 @@
 -two types absolute(full xpath) and relative=//input[name="e-mail]
 - it is used to find the position of any element through html dome structure
 ? Difference between absolute and relative XPATH
-we use prefer to relative xpath  bcz change in the positi on of the element the relative path remain same
+we use prefer to relative xpath  bcz change in the position of the element the relative path remain same
 ##DOM-document object model###
+
+
+3.XPATH--AND , OR(used when the element values are dynamic)---19/12/24
+
+4.XPATH-- with Text()----driver.find_Element(By.XPATH,"m")
+5.XPATH---with contains()----driver.find_Element(By.XPATH,"//a[contains(text()'pricing')]")
+                         ----driver.find_Element(By.XPATH,"//a[contains(@id,'pricing')]")
+6.XPATH---with starts-with()----driver.find_Element(By.XPATH,"//a[starts-with(text(),'pricing')]")
+                            ----driver.find_Element(By.XPATH,"//a[starts-with(@name,'value')]")
+
+
+###----XPATH axes-----### 19/12/24
+
+XPath axes are used to navigate through elements and attributes in
+an XML document relative to the current node.
+They provide a way to select nodes based on
+their relationship to other nodes in the document tree.
+
+###-----Relative  locators-----####--20 dec 2024
+Near
+Above/below
+ToLeftOf/ToRightOf
+WithtagName
+Near and WITHTAGName
+
+############################### Driver commands ############################ 23-dec-2024
+
+1.Application commands:---applicable on driver only
+
+These commands are used to interact with the browser through the WebDriver.
+	•	get(url):
+Loads the specified URL in the browser.
+Purpose: Navigate to a web page.
+	•	getTitle():
+Returns the title of the current web page as a string.
+Purpose: Verify the title of the page.
+	•	getCurrentUrl():
+Returns the current URL of the web page as a string.
+Purpose: Ensure the correct page is loaded.
+	•	getPageSource():
+Fetches the HTML source code of the current page.
+Purpose: Verify the structure or content of the page source.
+
+2.Conditional Commands:---
+
+These commands are used to verify the properties or states of web elements.
+	•	isDisplayed():
+Checks whether a web element is visible on the webpage.
+Purpose: Validate if an element (e.g., button, image) is shown to the user.
+	•	isEnabled():
+Verifies if a web element is enabled for interaction.
+Purpose: Ensure that buttons or input fields are active.
+	•	isSelected():
+Confirms if a web element, such as a checkbox or radio button, is selected.
+Purpose: Verify user selections or default settings.
+
+3.Browser commands---
+
+>close()
+>quit()
+
+4.Navigational commands---
+
+>back()
+>forward()
+>refresh()
+
+Difference between find_element and find_elements
+
+####---------------------Wait command 26-dec-24-----------------------###############
+
+Waits in Selenium
+
+Selenium provides three main types of waits to handle synchronization between the script and dynamic web elements:
+
+1. Implicit Wait
+	•	A global wait applied to all elements in the WebDriver session.
+	•	Waits for a specified duration for elements to appear before throwing an exception.
+	•	Suitable for simple, static applications.
+
+2. Explicit Wait
+	•	Waits for specific conditions (e.g., visibility, clickability) of specific elements.
+	•	Applied to individual elements as needed.
+	•	Ideal for handling dynamic elements or conditional scenarios.
+
+3. Fluent Wait
+	•	An advanced version of Explicit Wait with custom polling intervals.
+	•	Allows ignoring specific exceptions during the wait.
+	•	Best for highly dynamic applications requiring frequent checks.
+
+Comparison
+	•	Implicit Wait: Global, straightforward but less flexible.
+	•	Explicit Wait: Specific and condition-based, more flexible.
+	•	Fluent Wait: Customizable, suitable for complex scenarios.
+
+#####-------------Drop down----------############### 26-dec-2024
+
+##############-------27-dec-2024----------#####################
+Here’s a quick overview of Alerts, Date Pickers, and Frames in Selenium:
+
+1. Alerts in Selenium
+
+Alerts are pop-ups or dialog boxes that interact with the user, and Selenium provides methods to handle them.
+
+Types of Alerts:
+	1.	Simple Alert: Displays a message with an “OK” button.
+	2.	Confirmation Alert: Displays a message with “OK” and “Cancel” buttons.
+	3.	Prompt Alert: Displays a message with a text box for user input and “OK” and “Cancel” buttons.
+
+Handling Alerts in Selenium:
+	•	Switch to the alert using driver.switchTo().alert().
+	•	Perform operations like accept, dismiss, or get text:
+
+Alert alert = driver.switchTo().alert();
+alert.accept(); // Click OK
+alert.dismiss(); // Click Cancel
+String alertText = alert.getText(); // Get alert message
+alert.sendKeys("Input Text"); // Send input (for Prompt Alert)
+
+2. Date Pickers in Selenium
+
+Date pickers are UI components for selecting dates.
+
+Types of Date Pickers:
+	1.	Text Input Date Picker: Requires entering a date in a specific format.
+	2.	UI-based Calendar Date Picker: Requires interacting with a calendar widget.
+
+Handling Date Pickers:
+	1.	Text Input:
+	•	Clear the field and input the desired date:
+
+WebElement dateField = driver.findElement(By.id("dateInput"));
+dateField.clear();
+dateField.sendKeys("2024-12-27"); // Input date in required format
+
+
+	2.	UI-based Calendar:
+	•	Click on the calendar field, navigate through the month/year, and select the date:
+
+driver.findElement(By.id("calendarButton")).click(); // Open the calendar
+driver.findElement(By.xpath("//td[text()='27']")).click(); // Select the date
+
+3. Frames in Selenium
+
+Frames are HTML documents embedded inside another HTML document. Selenium provides methods to switch between frames.
+
+Types of Frames:
+	1.	iFrame: Inline frames embedded in the main HTML.
+	2.	Frame by Name or ID: Frames with a specific name or id.
+
+Handling Frames in Selenium:
+	1.	Switch to a Frame:
+	•	By Index:
+
+driver.switchTo().frame(0); // Switch to the first frame
+
+
+	•	By Name/ID:
+
+driver.switchTo().frame("frameName");
+
+
+	•	By WebElement:
+
+WebElement frameElement = driver.findElement(By.tagName("iframe"));
+driver.switchTo().frame(frameElement);
+
+
+	2.	Perform Actions:
+	•	Once inside the frame, interact with elements normally.
+	3.	Switch Back:
+	•	Switch back to the main document:
+
+driver.switchTo().defaultContent();
+
+Common Challenges
+	•	Alerts: Unhandled alerts can block test execution.
+	•	Date Pickers: Some custom calendars require dynamic element handling.
+	•	Frames: Ensure you are in the correct frame when interacting with elements.
+
+Let me know if you’d like code examples or further explanations on any specific concept!
+
+#################--------------------------- Date picker ----------------------------#########
+
+In Selenium with Python, handling a date picker requires understanding the UI structure and dynamically interacting with the elements. Here’s how you can work with date pickers in Python:
+
+Key Concepts of Handling Date Pickers in Selenium (Python)
+	1.	Understanding Date Picker Types:
+	•	Simple Input Field:
+	•	A text field where you can directly type the date.
+	•	JavaScript Popup Calendar:
+	•	A UI calendar that appears when you click on a field.
+
+Automating Date Pickers in Python
+
+1. Text-Based Input Fields:
+
+If the date picker allows typing the date directly:
+
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("URL_OF_YOUR_APPLICATION")
+
+# Locate the date input field
+date_input = driver.find_element("id", "date_field_id")
+
+# Enter the date directly
+date_input.clear()  # Clear any existing value
+date_input.send_keys("2024-12-30")  # Enter the desired date
+
+2. Interacting with a Calendar Popup:
+
+For date pickers that use pop-up calendars:
+
+Steps:
+	1.	Click the input field to open the calendar.
+	2.	Use Selenium locators to interact with calendar elements (e.g., arrows, dates).
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome()
+driver.get("URL_OF_YOUR_APPLICATION")
+
+# Open the calendar
+calendar_button = driver.find_element(By.ID, "calendar_button_id")
+calendar_button.click()
+
+# Wait for the calendar to load
+WebDriverWait(driver, 10).until(
+    EC.visibility_of_element_located((By.CLASS_NAME, "calendar_class"))
+)
+
+# Select a specific date (e.g., 30th December 2024)
+desired_date = driver.find_element(By.XPATH, "//td[text()='30']")
+desired_date.click()
+
+3. Using JavaScript Executor:
+
+If direct interaction doesn’t work due to JavaScript complexities:
+
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("URL_OF_YOUR_APPLICATION")
+
+# Use JavaScript to set the date value directly
+date_field = driver.find_element(By.ID, "date_field_id")
+driver.execute_script("arguments[0].value = '2024-12-30';", date_field)
+
+Common Challenges and Solutions
+	1.	Dynamic Calendars:
+	•	Use navigation controls (e.g., Next/Previous buttons) to switch months/years.
+Example:
+
+# Click the "Next Month" button until the desired month is displayed
+while True:
+    current_month = driver.find_element(By.CLASS_NAME, "current_month_class").text
+    if current_month == "December 2024":
+        break
+    next_button = driver.find_element(By.CLASS_NAME, "next_button_class")
+    next_button.click()
+
+
+	2.	Date Format:
+	•	Ensure the format matches what the application expects (YYYY-MM-DD, MM/DD/YYYY, etc.).
+	3.	Synchronization:
+	•	Use explicit waits (WebDriverWait) to handle delays or dynamic loading.
+
+Example Full Script
+
+Here’s a full script example for automating a JavaScript calendar:
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome()
+driver.get("URL_OF_YOUR_APPLICATION")
+
+# Open the calendar
+calendar_button = driver.find_element(By.ID, "calendar_button_id")
+calendar_button.click()
+
+# Wait for the calendar to be visible
+WebDriverWait(driver, 10).until(
+    EC.visibility_of_element_located((By.CLASS_NAME, "calendar_class"))
+)
+
+# Navigate to the desired month and year
+while True:
+    displayed_month_year = driver.find_element(By.CLASS_NAME, "month_year_class").text
+    if displayed_month_year == "December 2024":
+        break
+    next_button = driver.find_element(By.CLASS_NAME, "next_button_class")
+    next_button.click()
+
+# Select the date
+desired_date = driver.find_element(By.XPATH, "//td[text()='30']")
+desired_date.click()
+
+driver.quit()
+
+Best Practices
+	•	Inspect Elements: Use browser developer tools to identify the calendar’s structure.
+	•	Reusable Code: Wrap date picker logic in a function or a class.
+	•	Error Handling: Add try-except blocks for robustness.
+	•	Browser Compatibility: Test across browsers to ensure consistency.
+
+#######################-------Mouse/keyboard Event--------########################## 2jan25
+
+
+######################----file Download -------########################################### 6 jan 2025
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+import os
+
+# Set up Chrome options
+download_dir = os.path.join(os.getcwd(), "downloads")  # Directory for downloaded files
+if not os.path.exists(download_dir):
+    os.makedirs(download_dir)
+
+chrome_options = Options()
+chrome_prefs = {
+    "download.default_directory": download_dir,  # Set download directory
+    "download.prompt_for_download": False,  # Disable download prompt
+    "download.directory_upgrade": True,  # Upgrade directory if needed
+    "plugins.always_open_pdf_externally": True,  # For PDF files to open externally
+    "profile.default_content_settings.popups": 0  # Disable popups
+}
+chrome_options.add_experimental_option("prefs", chrome_prefs)
+
+# Set up the WebDriver
+driver_path = "<path_to_chromedriver>"  # Replace with the path to your ChromeDriver
+service = Service(driver_path)
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
+try:
+    # Example usage
+    driver.get("https://www.example.com")  # Replace with your target URL
+
+    # Find and click the download link/button (update the locator as needed)
+    download_button = driver.find_element(By.XPATH, "//a[@href='file_to_download.pdf']")
+    download_button.click()
+
+    print(f"File will be downloaded to: {download_dir}")
+finally:
+    # Clean up
+    driver.quit()
+
+######################----Data driven testing------########################################### 6 jan 2025
+
+
+Data-driven testing (DDT) is a software testing methodology where test data is separated from the test script. The test script runs the same set of operations with different sets of input data. The goal is to verify that the system behaves as expected across a variety of data inputs.
+
+Here’s how it works:
+	1.	Test Data Separation: Test data is stored separately, often in external sources like Excel files, CSV files, databases, or APIs.
+	2.	Test Scripts: The test scripts are written to run multiple times with different sets of input data. The logic of the test remains the same, but the inputs vary.
+	3.	Data Providers: The data for testing is provided through various data providers (files, databases, or programmatically generated) to test the application under different conditions.
+	4.	Test Execution: The test cases are executed automatically, and the results are logged. Each set of input data can trigger a new test iteration.
+	5.	Test Automation: This technique is commonly used with test automation frameworks like Selenium, JUnit, or TestNG, where tests are automated to run with different input data sets.
+
+Example:
+
+Suppose you’re testing a login form. You want to check how the system handles different usernames and passwords.
+	1.	Test Data (Excel/CSV):
+
+Username	Password	Expected Outcome
+user1	pass1	Login Success
+user2	wrongpass	Login Failure
+user3	pass3	Login Success
+
+
+	2.	Test Script:
+The script loops through each set of test data (username and password), inputs it into the login form, and compares the outcome with the expected result.
+
+Advantages:
+	•	Reusability: Test scripts are reusable with different data sets.
+	•	Efficiency: You can test multiple scenarios with minimal changes to the test script.
+	•	Consistency: Ensures that the system performs well across different data combinations.
+
+Tools for Data-Driven Testing:
+	•	JUnit / TestNG: Both support parameterized tests and can load data from external sources.
+	•	Selenium: Combined with frameworks like TestNG or JUnit, Selenium supports data-driven testing by running the same test with multiple data inputs.
+
+This method helps in testing applications with various combinations of data without the need to write individual test cases for each combination.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+assert class
